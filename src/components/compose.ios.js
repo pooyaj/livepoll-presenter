@@ -28,21 +28,21 @@ class Compose extends React.Component {
     var list = this.state.answers.map((answer) => <Answer {...answer}/>);
 
     return (
-        <View style={styles.container}>
-          <TextInput
-            style={styles.questionText}
-            multiline
-            numberOfLine="3"
-            placeholder="Ask your question !"
-          />
+      <View style={styles.container}>
+        <TextInput
+          style={styles.questionText}
+          multiline
+          numberOfLine="3"
+          placeholder="Ask your question !"
+        />
           {{list}}
-          <TouchableHighlight style={styles.addButton} onPress={this._onAddAnswer}>
-            <Text style={styles.buttonText}>+</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.submitButton} onPress={this.props.onSubmitPoll}>
-            <Text style={styles.buttonText}>Poll</Text>
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlights style={styles.addButton} onPress={this._onAddAnswer}>
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.submitButton} onPress={this.props.onSubmitPoll}>
+          <Text style={styles.buttonText}>Poll</Text>
+        </TouchableHighlight>
+      </View>
     );
   }
 
