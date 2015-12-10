@@ -22,7 +22,7 @@ class Answer extends React.Component {
           <TouchableHighlight
             style={styles.answerButton}
             >
-            <Text> - </Text>
+            <Text style={styles.buttonText}> - </Text>
           </TouchableHighlight>
       </View>
     );
@@ -35,7 +35,7 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 5,
+    margin: 5
   },
   answerText: {
     fontSize: 24,
@@ -46,13 +46,21 @@ var styles = StyleSheet.create({
     padding: 5
   },
   answerButton: {
+    flex: 1,
     width: 20,
     height: 40,
-    backgroundColor: 'gray',
-    flex: 1,
+    borderColor: '#FFFFFF',
+    backgroundColor: '#00AEEF',
+    borderRadius: 8,
+    borderWidth: 1,
+    margin: 5,
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  buttonText: {
+    fontSize: 20,
+    color: 'white'
+  },
 });
 
 Answer.defaultProps = {
