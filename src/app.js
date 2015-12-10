@@ -2,16 +2,19 @@ import React from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
 
+
 const {
  Navigator, View, Text
 } = React;
+
+var Compose = require('./components/compose.ios');
 
 class AppRouter extends React.Component {
 
   renderScene(route, nav) {
     switch (route.name) {
       case 'helloWorld':
-        return <View nav={nav} style={{backgroundColor:"green", flex:1, alignSelf:'center', justifyContent:'center'}}><Text>Hello World</Text></View>;
+        return <Compose />
       default:
         return <View><Text>Hello World</Text></View>;
     }
