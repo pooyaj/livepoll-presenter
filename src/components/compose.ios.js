@@ -13,9 +13,22 @@ class Compose extends React.Component {
   // Pooyah, I don't know if this is needed. I commented it out and it still worked.
   constructor(props) {
     super(props);
+
+    this.state = {
+      answers: [
+        {name: "test1", action:"test1"},
+        {name: "test2", action:"test2"},
+        {name: "test3", action:"test3"},
+        {name: "test4", action:"test4"},
+        {name: "test4", action:"test4"},
+        {name: "test4", action:"test4"},
+      ]
+    }
   }
 
   render() {
+    var list = this.state.answers.map((answer) => <Answer {...answer}/>);
+
     return (
       <View style={styles.container}>
         <TextInput
@@ -24,7 +37,7 @@ class Compose extends React.Component {
           numberOfLine="3"
           placeholder="Ask your question !"
         />
-        <Answer />
+        {{list}}
         <TouchableHighlight style={styles.addButton} onPress={this._onAddAnswer}>
           <Text style={styles.buttonText}>+</Text>
         </TouchableHighlight>
@@ -44,7 +57,15 @@ class Compose extends React.Component {
 Compose.defaultProps = {
   onMePress: () => {
     console.log('Submit button pressed');
-  }
+  },
+  answers: [
+    {name: "test1", action:"test1"},
+    {name: "test2", action:"test2"},
+    {name: "test3", action:"test3"},
+    {name: "test4", action:"test4"},
+    {name: "test4", action:"test4"},
+    {name: "test4", action:"test4"},
+  ]
 };
 
 var styles = StyleSheet.create({
