@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
 
 const {
-  StyleSheet, Navigator, View, Text, TextInput, TouchableHighlight
+  StyleSheet, Navigator, ScrollView, View, Text, TextInput, TouchableHighlight
   } = React;
 
 const Answer = require('./answer.compose.ios')
@@ -16,56 +16,49 @@ class Compose extends React.Component {
 
     this.state = {
       answers: [
-        {name: "test1", action:"test1"},
-        {name: "test2", action:"test2"},
-        {name: "test3", action:"test3"},
-        {name: "test4", action:"test4"},
-        {name: "test4", action:"test4"},
-        {name: "test4", action:"test4"},
+        {name: "test1", action: "test1"},
       ]
     }
+
+    this._onAddAnswer = this._onAddAnswer.bind(this);
   }
 
   render() {
+    console.log(this.state);
     var list = this.state.answers.map((answer) => <Answer {...answer}/>);
 
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.questionText}
-          multiline
-          numberOfLine="3"
-          placeholder="Ask your question !"
-        />
-        {{list}}
-        <TouchableHighlight style={styles.addButton} onPress={this._onAddAnswer}>
-          <Text style={styles.buttonText}>+</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.submitButton} onPress={this.props.onMePress}>
-          <Text style={styles.buttonText}>Poll</Text>
-        </TouchableHighlight>
-      </View>
+        <View style={styles.container}>
+          <TextInput
+            style={styles.questionText}
+            multiline
+            numberOfLine="3"
+            placeholder="Ask your question !"
+          />
+          {{list}}
+          <TouchableHighlight style={styles.addButton} onPress={this._onAddAnswer}>
+            <Text style={styles.buttonText}>+</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={styles.submitButton} onPress={this.props.onSubmitPoll}>
+            <Text style={styles.buttonText}>Poll</Text>
+          </TouchableHighlight>
+        </View>
     );
   }
 
   _onAddAnswer() {
     console.log('add button pressed');
+    var newAnswers = this.state.answers;
+    newAnswers.push({name: ""});
+    this.setState({answers: newAnswers});
   }
 }
 
 
 Compose.defaultProps = {
-  onMePress: () => {
+  onSubmitPoll: () => {
     console.log('Submit button pressed');
   },
-  answers: [
-    {name: "test1", action:"test1"},
-    {name: "test2", action:"test2"},
-    {name: "test3", action:"test3"},
-    {name: "test4", action:"test4"},
-    {name: "test4", action:"test4"},
-    {name: "test4", action:"test4"},
-  ]
 };
 
 var styles = StyleSheet.create({
@@ -75,7 +68,7 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
-    paddingTop: 50,
+    paddingTop: 16,
     paddingHorizontal: 20
   },
   questionText: {
