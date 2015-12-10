@@ -18,7 +18,7 @@ class Answer extends React.Component {
           <TouchableHighlight
             style={styles.answerButton}
             >
-            <Text> Test </Text>
+            <Text> - </Text>
           </TouchableHighlight>
       </View>
     );
@@ -29,22 +29,31 @@ class Answer extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     margin: 5,
   },
   answerText: {
     fontSize: 24,
+    width: 270,
     height: 40,
     borderColor: 'gray',
     borderBottomWidth: 2,
     padding: 5
   },
   answerButton: {
-    width: 40,
+    width: 20,
     height: 40,
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
+
+Answer.defaultProps = {
+  onTextBlur: () => {console.log("text blurred")},
+  showButton: true
+};
 
 module.exports = Answer;
