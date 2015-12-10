@@ -1,4 +1,4 @@
-# react-native-test
+# Livepoll Presenter App
 
 ## Getting Started
 
