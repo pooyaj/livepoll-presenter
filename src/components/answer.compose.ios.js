@@ -7,6 +7,9 @@ const {
 } = React;
 
 class Answer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render(){
     return(
@@ -14,6 +17,7 @@ class Answer extends React.Component {
           <TextInput
             style={styles.answerText}
             placeholder="Answer"
+            onBlur={this.props.onTextBlur}
           />
           <TouchableHighlight
             style={styles.answerButton}
