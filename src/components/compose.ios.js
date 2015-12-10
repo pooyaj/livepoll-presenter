@@ -3,31 +3,41 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
 
 const {
- StyleSheet, Navigator, View, Text, TextInput, TouchableHighlight
-} = React;
+  StyleSheet, Navigator, View, Text, TextInput, TouchableHighlight
+  } = React;
 
 const Answer = require('./answer.compose.ios')
 
 class Compose extends React.Component {
 
-  render(){
-    return(
+  // Pooyah, I don't know if this is needed. I commented it out and it still worked.
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
       <View style={styles.container}>
-          <TextInput
-            style={styles.questionText}
-            multiline
-            numberOfLine="3"
-            placeholder="Ask your question !"
-          />
-          <Answer />
-          <TouchableHighlight style={styles.submitButton}>
-              <Text>Submit</Text>
-          </TouchableHighlight>
+        <TextInput
+          style={styles.questionText}
+          multiline
+          numberOfLine="3"
+          placeholder="Ask your question !"
+        />
+        <Answer />
+        <TouchableHighlight style={styles.submitButton} onPress={this.props.onMePress}>
+          <Text>Poll</Text>
+        </TouchableHighlight>
       </View>
     );
   }
 }
 
+Compose.defaultProps = {
+  onMePress: () => {
+    console.log('Submit button pressed');
+  }
+};
 
 var styles = StyleSheet.create({
   container: {
@@ -57,6 +67,5 @@ var styles = StyleSheet.create({
     backgroundColor: '#d3d3d3',
   }
 });
-
 
 module.exports = Compose;
