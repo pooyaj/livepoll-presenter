@@ -25,13 +25,21 @@ class Compose extends React.Component {
           placeholder="Ask your question !"
         />
         <Answer />
+        <TouchableHighlight style={styles.addButton} onPress={this._onAddAnswer}>
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableHighlight>
         <TouchableHighlight style={styles.submitButton} onPress={this.props.onMePress}>
-          <Text>Poll</Text>
+          <Text style={styles.buttonText}>Poll</Text>
         </TouchableHighlight>
       </View>
     );
   }
+
+  _onAddAnswer() {
+    console.log('add button pressed');
+  }
 }
+
 
 Compose.defaultProps = {
   onMePress: () => {
@@ -42,11 +50,12 @@ Compose.defaultProps = {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
     paddingTop: 50,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   questionText: {
     fontSize: 34,
@@ -55,16 +64,31 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5
   },
-  submitButton: {
+  buttonText: {
+    fontSize: 20,
+    color: 'white'
+  },
+  addButton: {
     height: 48,
-    borderColor: '#696969',
+    borderColor: '#FFFFFF',
     borderRadius: 8,
     borderWidth: 1,
-    padding: 10,
+    padding: 15,
+    margin: 5,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00AEEF'
+  },
+  submitButton: {
+    height: 48,
+    borderColor: '#FFFFFF',
+    borderRadius: 8,
+    borderWidth: 1,
+    padding: 15,
     margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#d3d3d3',
+    backgroundColor: '#00AEEF'
   }
 });
 
