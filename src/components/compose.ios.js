@@ -6,6 +6,8 @@ const {
  StyleSheet, Navigator, View, Text, TextInput, TouchableHighlight
 } = React;
 
+const Answer = require('./answer.compose.ios')
+
 class Compose extends React.Component {
 
   render(){
@@ -17,6 +19,7 @@ class Compose extends React.Component {
             numberOfLine="3"
             placeholder="Ask your question !"
           />
+          <Answer />
           <TouchableHighlight style={styles.submitButton}>
               <Text>Submit</Text>
           </TouchableHighlight>
