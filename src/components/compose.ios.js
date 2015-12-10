@@ -35,15 +35,25 @@ class Compose extends React.Component {
           numberOfLine="3"
           placeholder="Ask your question !"
         />
-          {{list}}
-        <TouchableHighlights style={styles.addButton} onPress={this._onAddAnswer}>
-          <Text style={styles.buttonText}>+</Text>
-        </TouchableHighlight>
+        {{list}}
+        {this._createAddButton()}
         <TouchableHighlight style={styles.submitButton} onPress={this.props.onSubmitPoll}>
           <Text style={styles.buttonText}>Poll</Text>
         </TouchableHighlight>
       </View>
     );
+  }
+
+  _createAddButton() {
+    var items = [];
+    if (this.state.answers.length < 4) {
+      items[0] = (
+        <TouchableHighlight style={styles.addButton} onPress={this._onAddAnswer}>
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableHighlight>
+      );
+    }
+    return items;
   }
 
   _onAddAnswer() {
