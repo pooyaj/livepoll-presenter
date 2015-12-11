@@ -10,7 +10,6 @@ const _ = require('lodash')
 
 class Compose extends React.Component {
 
-  // Pooyah, I don't know if this is needed. I commented it out and it still worked.
   constructor(props) {
     super(props);
 
@@ -45,6 +44,7 @@ class Compose extends React.Component {
           autoFocus={index !== 0}/>
     );
 
+    // show submit button or progress bar
     var submitButtonMessage = this.props.isLoading ?
       this._createIndeterminateProgressBar() :
       <Text style={styles.buttonText}>Poll</Text>;
