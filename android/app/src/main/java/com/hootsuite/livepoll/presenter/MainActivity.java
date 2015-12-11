@@ -1,4 +1,4 @@
-package com.reactnativetest;
+package com.hootsuite.livepoll.presenter;
 
 import android.app.Activity;
 import android.os.Bundle;
