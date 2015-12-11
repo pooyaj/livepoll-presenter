@@ -16,13 +16,18 @@ class Compose extends React.Component {
     super(props);
 
     this.state = {
+      question: "",
       answers: [
-        {name: "test1", action:"test1", id:0},
+        {
+          text: "test1",
+          id:0
+        },
       ]
     }
     this.counter = 3;
     this._onAddAnswer = this._onAddAnswer.bind(this);
     this._onAnswerUpdated = this._onAnswerUpdated.bind(this);
+    this._onQuestionUpdated = this._onQuestionUpdated.bind(this);
   }
 
   render() {
@@ -30,7 +35,7 @@ class Compose extends React.Component {
     var list = this.state.answers.map((answer) =>
       <Answer
         pressHandler={() => this.removeAnswer(answer)}
-        name={answer.name}
+        text={answer.text}
         onAnswerUpdated={(text) => this._onAnswerUpdated(text, answer)} />
     );
 
@@ -46,6 +51,7 @@ class Compose extends React.Component {
               input.focus();
             }
           }}
+          onChangeText={this._onQuestionUpdated}
         />
         <View style={styles.listContainer}>
           {{list}}
@@ -70,11 +76,16 @@ class Compose extends React.Component {
     return items;
   }
 
+  _onQuestionUpdated(text) {
+    this.setState({question: text});
+    console.log("init", this.state);
+  }
+
   _onAnswerUpdated(text, answer) {
     console.log(text);
     _.forEach(this.state.answers, (item) => {
       if (item.id === answer.id) {
-        item.name = text;
+        item.text = text;
       }
     });
   }
@@ -82,7 +93,7 @@ class Compose extends React.Component {
   _onAddAnswer() {
     var newAnswers = this.state.answers;
     this.counter++;
-    newAnswers.push({name: "", id:this.counter});
+    newAnswers.push({text: "", id:this.counter});
     this.setState({answers: newAnswers});
   }
 

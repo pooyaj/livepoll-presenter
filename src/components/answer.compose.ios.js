@@ -17,7 +17,7 @@ class Answer extends React.Component {
           <TextInput
             style={styles.answerText}
             placeholder="Answer"
-            defaultValue={this.props.name}
+            defaultValue={this.props.text}
             onChangeText={this.props.onAnswerUpdated}
           />
           <TouchableHighlight
