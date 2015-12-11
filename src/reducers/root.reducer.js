@@ -15,6 +15,9 @@ const initialState = Map({
 
   openPollId: "sdfdsfsfdsfsd",
 
+  currentPollId: "",
+  currentPoll: {},
+
   openPoll: {},
 
   polls: Map({}),
@@ -40,6 +43,14 @@ export default function rootReducer(state=initialState, action) {
         return state.merge({loading: action.loading, error: action.error});
       } else {
         return state.merge({loading: action.loading, error: action.error});
+      }
+    }
+    case "FETCH_POLL": {
+      console.log(action.pollData);
+      if (action.loading.isLoading || ("error" in action)) {
+        return state.merge({loading: action.loading, error: action.error});
+      } else {
+        return state.merge({loading: action.loading, currentPoll: action.pollData});
       }
     }
 

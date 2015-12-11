@@ -112,5 +112,23 @@ export function createPoll (question, answers) {
       rootfireRef.child('openPollId').set(newPoll.key());
       dispatch({type: "CREATE_POLL", loading: {isLoading: false, message: "Created new poll"}});
     }
+  }
+
+export function fetchPoll (pollId) {
+
+    return (dispatch) => {
+      dispatch({type: "FETCH_POLL", loading: {isLoading: true, message: "Fetching poll"}});
+
+      //create the new live poll
+      var currentPoll = rootfireRef.child('polls/'+pollId+"/");
+      currentPoll.once("value", (data) => {
+        dispatch({
+          type: "FETCH_POLL",
+          loading: {isLoading: false, message: "Fetched poll"},
+          pollData: data.val()
+        });
+      });
+
+    }
 
 }

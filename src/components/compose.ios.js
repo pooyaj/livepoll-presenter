@@ -28,6 +28,10 @@ class Compose extends React.Component {
     this._onAddAnswer = this._onAddAnswer.bind(this);
     this._onAnswerUpdated = this._onAnswerUpdated.bind(this);
     this._onQuestionUpdated = this._onQuestionUpdated.bind(this);
+
+    if (this.props.currentPollId) {
+      this.props.fetchPoll(this.props.currentPollId);
+    }
   }
 
   render() {
