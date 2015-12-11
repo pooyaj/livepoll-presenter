@@ -7,14 +7,14 @@ const {
  Navigator, View, Text
 } = React;
 
-var Compose = require('./components/compose.ios');
+var ComposeContainer = require('./containers/compose.container');
 
 class AppRouter extends React.Component {
 
   renderScene(route, nav) {
     switch (route.name) {
       case 'helloWorld':
-        return <Compose />
+        return <ComposeContainer />
       default:
         return <View><Text>Hello World</Text></View>;
     }

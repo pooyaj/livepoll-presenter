@@ -1,6 +1,7 @@
 import React from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
+import * as questionActions from '../actions/question.actions';
 
 const {
   StyleSheet, Navigator, ScrollView, View, Text, TextInput, TouchableHighlight
@@ -57,7 +58,7 @@ class Compose extends React.Component {
           {{list}}
         </View>
         {this._createAddButton()}
-        <TouchableHighlight style={styles.submitButton} onPress={this.props.onSubmitPoll}>
+        <TouchableHighlight style={styles.submitButton} onPress={this.props.setQuestions}>
           <Text style={styles.buttonText}>Poll</Text>
         </TouchableHighlight>
       </View>
@@ -162,4 +163,6 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Compose;
+
+export default Compose;
+

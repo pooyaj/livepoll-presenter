@@ -13,6 +13,12 @@ export default function rootReducer(state=initialState, action) {
       // always need to return the new state
       return state.set('loading', action.loading);
     }
+    case "SET_QUESTIONS": {
+      // always need to return the new state
+      console.log("Setting Questions")
+      return state.set('loading', action.loading);
+    }
+
   }
   return state;
 }
