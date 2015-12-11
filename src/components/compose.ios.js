@@ -2,11 +2,34 @@ import React from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
 const {
-  Platform, StyleSheet, Navigator, ScrollView, View, Text, TextInput, TouchableHighlight, ActivityIndicatorIOS, ProgressBarAndroid
+  Platform,
+  StyleSheet,
+  Navigator,
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  ActivityIndicatorIOS,
+  ProgressBarAndroid,
   } = React;
 
 const Answer = require('./answer.compose.ios')
 const _ = require('lodash')
+var DialogAndroid = require('react-native-dialogs');
+
+var showAndroidDialog = function (title, message) {
+  var dialog = new DialogAndroid();
+
+  var options = {
+    title: title,
+    content: message,
+    positiveText: 'OK',
+  };
+
+  dialog.set(options);
+  dialog.show();
+}
 
 class Compose extends React.Component {
 
@@ -87,6 +110,13 @@ class Compose extends React.Component {
       this._resetPoll();
     } else {
       console.log("Need question or more answers");
+      var title = "(╯°□°)╯︵ ┻━┻"
+      var message = "Make sure your poll has a question and at least two answers. "
+      if (Platform.OS === 'ios') {
+
+      } else {
+        showAndroidDialog(title, message);
+      }
     }
   }
 

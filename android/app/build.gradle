@@ -47,6 +47,15 @@ apply plugin: "com.android.application"
  * ]
  */
 
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    // after other dependencies
+    compile project(':react-native-dialogs')
+}
+
 apply from: "react.gradle"
 
 android {
