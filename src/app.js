@@ -8,6 +8,7 @@ const {
 } = React;
 
 var ComposeContainer = require('./containers/compose.container');
+import QuestionsContainer from './containers/questions.container';
 
 class AppRouter extends React.Component {
 
@@ -15,6 +16,8 @@ class AppRouter extends React.Component {
     switch (route.name) {
       case 'helloWorld':
         return <ComposeContainer/>
+      case 'questionList':
+        return <QuestionsContainer navigator={nav} />;
       default:
         return <View><Text>Hello World</Text></View>;
     }
