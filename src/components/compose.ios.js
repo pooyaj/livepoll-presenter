@@ -7,6 +7,7 @@ const {
   } = React;
 
 const Answer = require('./answer.compose.ios')
+const _ = require('lodash')
 
 class Compose extends React.Component {
 
@@ -16,7 +17,10 @@ class Compose extends React.Component {
 
     this.state = {
       answers: [
-        {name: "test1", action: "test1"},
+        {name: "test1", action:"test1"},
+        {name: "test2", action:"test2"},
+        {name: "test3", action:"test3"},
+        {name: "test4", action:"test4"},
       ]
     }
 
@@ -24,8 +28,8 @@ class Compose extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-    var list = this.state.answers.map((answer) => <Answer {...answer}/>);
+
+    var list = this.state.answers.map((answer) => <Answer pressHandler={() => this.removeAnswer(answer)}/>);
 
     return (
       <View style={styles.container}>
@@ -60,6 +64,14 @@ class Compose extends React.Component {
     console.log('add button pressed');
     var newAnswers = this.state.answers;
     newAnswers.push({name: ""});
+    this.setState({answers: newAnswers});
+  }
+
+  removeAnswer(answer) {
+    var newAnswers = _.reject(this.state.answers, function(item) {
+      return answer.name == item.name;
+    });
+    console.log(newAnswers);
     this.setState({answers: newAnswers});
   }
 }

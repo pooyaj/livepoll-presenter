@@ -21,6 +21,7 @@ class Answer extends React.Component {
           />
           <TouchableHighlight
             style={styles.answerButton}
+            onPress={this.props.pressHandler}
             >
             <Text style={styles.buttonText}> - </Text>
           </TouchableHighlight>
