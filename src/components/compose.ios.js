@@ -18,7 +18,7 @@ class Compose extends React.Component {
 
       answers: [
         {
-          text: "test1",
+          text: "",
           id: 0
         },
       ]
@@ -28,6 +28,8 @@ class Compose extends React.Component {
     this._onAnswerUpdated = this._onAnswerUpdated.bind(this);
     this._onQuestionUpdated = this._onQuestionUpdated.bind(this);
     this._createIndeterminateProgressBar = this._createIndeterminateProgressBar.bind(this);
+    this._resetPoll = this._resetPoll.bind(this);
+    this._onCreatePoll = this._onCreatePoll.bind(this);
 
     if (this.props.currentPollId) {
       this.props.fetchPoll(this.props.currentPollId);
@@ -56,6 +58,7 @@ class Compose extends React.Component {
         <TextInput
           style={styles.questionText}
           multiline
+          defaultValue={this.state.question}
           numberOfLine="3"
           placeholder="Question"
           autoFocus="true"
@@ -69,12 +72,23 @@ class Compose extends React.Component {
           <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={this.props.onPastPolls}>
             <Text style={styles.buttonText}>Past Polls</Text>
           </TouchableHighlight>
-          <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={ () => this.props.onSubmit(this.state.question, this.state.answers)}>
+          <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={ () => this._onCreatePoll(this.state.question, this.state.answers)}>
             {submitButtonMessage}
           </TouchableHighlight>
         </View>
       </View>
     );
+  }
+
+  _onCreatePoll(question, answers) {
+    console.log("Create Poll tapped");
+    this.props.onSubmit(question, answers);
+    this._resetPoll();
+  }
+
+  _resetPoll() {
+    this.counter++;
+    this.setState({question: "", answers: [{text: "", id: this.counter}]});
   }
 
   _createAddButton() {
