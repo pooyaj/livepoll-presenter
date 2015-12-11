@@ -72,14 +72,6 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-    buildTypes {
-        release {
-            minifyEnabled false  // Set this to true to enable Proguard
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-        }
-    }
-
     signingConfigs {
         release {
             storeFile file(MYAPP_RELEASE_STORE_FILE)
@@ -88,6 +80,14 @@ android {
             keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
+    buildTypes {
+        release {
+            minifyEnabled false  // Set this to true to enable Proguard
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+        }
+    }
+
 }
 
 dependencies {
