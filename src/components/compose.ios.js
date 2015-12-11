@@ -31,7 +31,7 @@ class Compose extends React.Component {
       <Answer
         pressHandler={() => this.removeAnswer(answer)}
         name={answer.name}
-        onAnswerUpdated={(text) => this._onAnswerUpdated(text)} />
+        onAnswerUpdated={(text) => this._onAnswerUpdated(text, answer)} />
     );
 
     return (
@@ -70,8 +70,13 @@ class Compose extends React.Component {
     return items;
   }
 
-  _onAnswerUpdated(text) {
-    console.log("compose", text);
+  _onAnswerUpdated(text, answer) {
+    console.log(text);
+    _.forEach(this.state.answers, (item) => {
+      if (item.id === answer.id) {
+        item.name = text;
+      }
+    });
   }
 
   _onAddAnswer() {

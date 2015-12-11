@@ -32,9 +32,6 @@ class Answer extends React.Component {
 }
 
 Answer.defaultProps = {
-  onAnswerUpdated: (text) =>  {
-
-  }
 }
 
 var styles = StyleSheet.create({
