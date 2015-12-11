@@ -35,7 +35,9 @@ class Compose extends React.Component {
   }
 
   render() {
-
+    if (this.props.pollCreationStatus === "Created new poll") {
+      this.props.onCreatePollSuccess();
+    }
     var list = this.state.answers.map((answer, index) =>
         <Answer
           pressHandler={() => this.removeAnswer(answer)}
@@ -126,7 +128,7 @@ class Compose extends React.Component {
 
 
 Compose.defaultProps = {
-  onSubmitPoll: () => {
+  onCreatePoll: (question, answers) => {
     console.log('Submit button pressed');
   },
   onPastPolls: () => {

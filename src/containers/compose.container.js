@@ -10,6 +10,7 @@ class ComposeContainer extends Component {
 
   constructor(props) {
     super(props);
+    this._onCreatePollSuccess = this._onCreatePollSuccess.bind(this);
   }
 
   componentDidMount() {
@@ -22,7 +23,13 @@ class ComposeContainer extends Component {
       isLoading={this.props.isLoading}
       currentPollId={this.props.currentPollId}
       onPastPolls={this._onPastPolls.bind(this)}
+      onCreatePollSuccess={this._onCreatePollSuccess}
+      pollCreationStatus={this.props.pollCreationStatus}
       />);
+  }
+
+  _onCreatePollSuccess() {
+    console.log("Poll created. Pizza time! Cowabunga!!");
   }
 
   _onPastPolls() {
@@ -33,7 +40,8 @@ class ComposeContainer extends Component {
 const mapReduxStoreToProps = (reduxStore) => {
   return {
     isLoading: reduxStore.getIn(['loading', 'isLoading']),
-    currentPollId: "-K5Ea5Q_-kfhxdyIZkFO"//reduxStore.get('currentPollId'),
+    currentPollId: reduxStore.get('currentPollId'),
+    pollCreationStatus: reduxStore.getIn(['loading', 'message'])
   };
 };
 
