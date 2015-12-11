@@ -17,7 +17,6 @@ class Answer extends React.Component {
           <TextInput
             style={styles.answerText}
             placeholder="Answer"
-            onBlur={this.props.onTextBlur}
           />
           <TouchableHighlight
             style={styles.answerButton}
@@ -61,10 +60,5 @@ var styles = StyleSheet.create({
     color: 'white'
   },
 });
-
-Answer.defaultProps = {
-  onTextBlur: () => {console.log("text blurred")},
-  showButton: true
-};
 
 module.exports = Answer;

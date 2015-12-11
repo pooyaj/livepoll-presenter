@@ -17,19 +17,16 @@ class Compose extends React.Component {
 
     this.state = {
       answers: [
-        {name: "test1", action:"test1"},
-        {name: "test2", action:"test2"},
-        {name: "test3", action:"test3"},
-        {name: "test4", action:"test4"},
+        {name: "test1", action:"test1", id:0},
       ]
     }
-
+    this.counter = 3;
     this._onAddAnswer = this._onAddAnswer.bind(this);
   }
 
   render() {
 
-    var list = this.state.answers.map((answer) => <Answer pressHandler={() => this.removeAnswer(answer)}/>);
+    var list = this.state.answers.map((answer) => <Answer pressHandler={() => this.removeAnswer(answer)} name={answer.name}/>);
 
     return (
       <View style={styles.container}>
@@ -39,7 +36,9 @@ class Compose extends React.Component {
           numberOfLine="3"
           placeholder="Ask your question !"
         />
-        {{list}}
+        <View style={styles.listContainer}>
+          {{list}}
+        </View>
         {this._createAddButton()}
         <TouchableHighlight style={styles.submitButton} onPress={this.props.onSubmitPoll}>
           <Text style={styles.buttonText}>Poll</Text>
@@ -61,17 +60,17 @@ class Compose extends React.Component {
   }
 
   _onAddAnswer() {
-    console.log('add button pressed');
     var newAnswers = this.state.answers;
-    newAnswers.push({name: ""});
+    this.counter++;
+    newAnswers.push({name: "", id:this.counter});
     this.setState({answers: newAnswers});
   }
 
   removeAnswer(answer) {
-    var newAnswers = _.reject(this.state.answers, function(item) {
-      return answer.name == item.name;
+    var newAnswers = this.state.answers
+    _.remove(newAnswers, function(item) {
+      return answer.id === item.id;
     });
-    console.log(newAnswers);
     this.setState({answers: newAnswers});
   }
 }
@@ -125,6 +124,9 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#00AEEF'
+  },
+  listContainer: {
+    flex: 1
   }
 });
 
