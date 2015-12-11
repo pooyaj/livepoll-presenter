@@ -65,13 +65,14 @@ class Compose extends React.Component {
           {{list}}
         </View>
         {this._createAddButton()}
-
-        <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={ () => this.props.onSubmit(this.state.question, this.state.answers)}>
-          {submitButtonMessage}
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={this.props.onPastPolls}>
-          <Text style={styles.buttonText}>Past Polls</Text>
-        </TouchableHighlight>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={this.props.onPastPolls}>
+            <Text style={styles.buttonText}>Past Polls</Text>
+          </TouchableHighlight>
+          <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={ () => this.props.onSubmit(this.state.question, this.state.answers)}>
+            {submitButtonMessage}
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -170,6 +171,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#00AEEF'
   },
   submitButton: {
+    flex:1,
     height: 48,
     borderColor: '#FFFFFF',
     borderRadius: 8,
@@ -179,6 +181,11 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#00AEEF'
+  },
+  buttonContainer: {
+    flex:0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   listContainer: {
     flex: 1

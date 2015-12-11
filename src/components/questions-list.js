@@ -35,7 +35,7 @@ class QuestionsList extends React.Component {
         style={[styles.header, isActive && styles.isActive]}
         duration={200}
         transition="backgroundColor">
-        <Question question={question}/>
+        <Question question={question} onRemoveQuestion={this.props.onRemoveQuestion.bind(this)}/>
       </Animatable.View>
     );
   }
