@@ -24,7 +24,7 @@ class Answer extends React.Component {
             style={styles.answerButton}
             onPress={this.props.pressHandler}
             >
-            <Text style={styles.buttonText}> - </Text>
+            <Text style={styles.buttonText}>-</Text>
           </TouchableHighlight>
       </View>
     );
@@ -38,25 +38,24 @@ var styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 5
+    marginTop: 5
   },
   answerText: {
+    flex: 1,
     fontSize: 24,
-    width: 270,
-    height: 40,
-    borderColor: 'gray',
-    borderBottomWidth: 2,
-    padding: 5
+    height: 48,
+    lineHeight: 48,
+    borderColor: '#d8d8d8',
+    borderBottomWidth: 1,
   },
   answerButton: {
-    flex: 1,
-    width: 20,
-    height: 40,
+    flex: 0,
+    height: 48,
+    padding: 15,
     borderColor: '#FFFFFF',
     backgroundColor: '#00AEEF',
     borderRadius: 8,
     borderWidth: 1,
-    margin: 5,
     justifyContent: 'center',
     alignItems: 'center'
   },

@@ -45,7 +45,7 @@ class Compose extends React.Component {
           style={styles.questionText}
           multiline
           numberOfLine="3"
-          placeholder="Ask your question !"
+          placeholder="Question"
           ref={function(input) {
             if (input != null) {
               input.focus();
@@ -119,15 +119,16 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#ffffff',
     paddingTop: 16,
+    marginTop: 20,
     paddingHorizontal: 20
   },
   questionText: {
     fontSize: 34,
     height: 200,
-    borderColor: 'gray',
-    borderWidth: 1,
+    borderColor: '#d8d8d8',
+    borderBottomWidth: 1,
     padding: 5
   },
   buttonText: {
