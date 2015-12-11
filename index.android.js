@@ -10,7 +10,7 @@ const {AppRegistry, Component} = React; // React Must be defined;
 
 // create a store that has redux-thunk middleware enabled
 const createStoreWithMiddleware = applyMiddleware(
-    thunk
+  thunk
 )(createStore);
 
 // Init Store with root reducer
@@ -20,14 +20,14 @@ console.log(store.getState().toJS());
 
 class reactNativeTest extends Component {
 
-    // Injects redux store to all children
-    render(){
-        return(
-            <Provider store={store}>
+  // Injects redux store to all children
+  render() {
+    return (
+      <Provider store={store}>
         { () => <App/> }
-            </Provider>
-        );
-    }
+      </Provider>
+    );
+  }
 }
 
 AppRegistry.registerComponent('reactNativeTest', () => reactNativeTest);
