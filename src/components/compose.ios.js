@@ -2,7 +2,7 @@ import React from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
 const {
-  StyleSheet, Navigator, ScrollView, View, Text, TextInput, TouchableHighlight
+  StyleSheet, Navigator, ScrollView, View, Text, TextInput, TouchableHighlight, ActivityIndicatorIOS
   } = React;
 
 const Answer = require('./answer.compose.ios')
@@ -39,6 +39,10 @@ class Compose extends React.Component {
         onAnswerUpdated={(text) => this._onAnswerUpdated(text, answer)} />
     );
 
+    var submitButtonMessage = this.props.isLoading ?
+      <ActivityIndicatorIOS size="large" color="white"/>:
+      <Text style={styles.buttonText}>Poll</Text>;
+
     return (
       <View style={styles.container}>
         <TextInput
@@ -59,7 +63,7 @@ class Compose extends React.Component {
         {this._createAddButton()}
 
         <TouchableHighlight style={styles.submitButton} onPress={ () => this.props.onSubmit(this.state.question, this.state.answers)}>
-          <Text style={styles.buttonText}>Poll</Text>
+          {submitButtonMessage}
         </TouchableHighlight>
       </View>
     );
@@ -158,7 +162,7 @@ var styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1
-  }
+  },
 });
 
 

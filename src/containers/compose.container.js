@@ -13,12 +13,11 @@ class ComposeContainer extends Component {
   }
 
   render(){
-    return (<Compose onSubmit={this.props.createPoll}/>)
+    return (<Compose onSubmit={this.props.createPoll} isLoading={this.props.isLoading}/>)
   }
 }
 
 const mapReduxStoreToProps = (reduxStore) => {
-
   return {
     isLoading: reduxStore.getIn(['loading', 'isLoading']),
   };
