@@ -50,7 +50,7 @@ var styles = StyleSheet.create({
     width: 40,
     borderColor: '#FFFFFF',
     backgroundColor: '#00AEEF',
-    borderRadius: 8,
+    borderRadius: 0,
     margin:5,
     borderWidth: 1,
     justifyContent: 'center',

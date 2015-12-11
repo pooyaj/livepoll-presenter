@@ -56,7 +56,7 @@ var styles = StyleSheet.create({
     padding: 15,
     borderColor: '#FFFFFF',
     backgroundColor: '#00AEEF',
-    borderRadius: 8,
+    borderRadius: 0,
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center'

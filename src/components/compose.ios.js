@@ -176,7 +176,7 @@ var styles = StyleSheet.create({
   addButton: {
     height: 48,
     borderColor: '#FFFFFF',
-    borderRadius: 8,
+    borderRadius: 0,
     borderWidth: 1,
     padding: 15,
     margin: 5,
@@ -188,7 +188,7 @@ var styles = StyleSheet.create({
     flex:1,
     height: 48,
     borderColor: '#FFFFFF',
-    borderRadius: 8,
+    borderRadius: 0,
     borderWidth: 1,
     padding: 15,
     margin: 5,
