@@ -81,9 +81,13 @@ class Compose extends React.Component {
   }
 
   _onCreatePoll(question, answers) {
-    console.log("Create Poll tapped");
-    this.props.onSubmit(question, answers);
-    this._resetPoll();
+    if (!_.isEmpty(question) && !_.isNull(answers) && answers.length > 1) {
+      console.log("Create Poll tapped");
+      this.props.onSubmit(question, answers);
+      this._resetPoll();
+    } else {
+      console.log("Need question or more answers");
+    }
   }
 
   _resetPoll() {
@@ -185,7 +189,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#00AEEF'
   },
   submitButton: {
-    flex:1,
+    flex: 1,
     height: 48,
     borderColor: '#FFFFFF',
     borderRadius: 0,
@@ -197,7 +201,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#00AEEF'
   },
   buttonContainer: {
-    flex:0,
+    flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
