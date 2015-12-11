@@ -159,7 +159,9 @@ export function fetchPoll (pollId) {
 }
 
 export function removePoll (pollId) {
-  dispatch({type: "REMOVE_POLL", loading: {isLoading: true, message: "Removing poll with id " + pollId}});
-  fireRef.child('polls').child(pollId).remove()
-  dispatch({type: "REMOVE_POLL", loading: {isLoading: false, message: "Removed poll with id " + pollId}});
+  return (dispatch) => {
+    dispatch({type: "REMOVE_POLL", loading: {isLoading: true, message: "Removing poll with id " + pollId}});
+    rootfireRef.child('polls').child(pollId).remove()
+    dispatch({type: "REMOVE_POLL", loading: {isLoading: false, message: "Removed poll with id " + pollId}});
+  }
 }

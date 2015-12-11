@@ -23,10 +23,10 @@ class QuestionsContainer extends React.Component {
   }
 
   render(){
-    const {questions, navigator} = this.props;
+    const {questions, navigator, removePoll} = this.props;
     return(
       <View>
-        <QuestionsList  navigator={navigator} questions={questions}/>
+        <QuestionsList  navigator={navigator} questions={questions} removePoll={removePoll}/>
       </View>
     );
   }
@@ -45,7 +45,8 @@ const mapReduxStoreToProps = (reduxStore) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setPolls: bindActionCreators(Actions.setPolls, dispatch),
-    fetchPolls: bindActionCreators(Actions.getPolls, dispatch)
+    fetchPolls: bindActionCreators(Actions.getPolls, dispatch),
+    removePoll: bindActionCreators(Actions.removePoll, dispatch)
   }
 };
 

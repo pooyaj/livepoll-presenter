@@ -17,14 +17,13 @@ class Question extends React.Component {
   }
 
   render() {
-    var question = this.props.question;
     return (
       <View style={styles.questionContainer}>
-        <Text style={styles.header}>{question.get('questionText')}</Text>
+        <Text style={styles.header}>{this.props.question.questionText}</Text>
         <TouchableHighlight
           underlayColor="#3498db"
           style={styles.buttonSmall}
-          onPress={ () => this.props.onRemoveQuestion(question) }
+          onPress={ () => this.props.onRemoveQuestion(this.props.question) }
         >
           <Text style={styles.buttonText}>X</Text>
         </TouchableHighlight>
