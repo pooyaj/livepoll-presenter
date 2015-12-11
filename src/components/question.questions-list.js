@@ -1,7 +1,6 @@
 import React from 'react-native';
 import Immutable from 'immutable';
 var _ = require('lodash');
-var Accordion = require('react-native-collapsible/Accordion');
 var Animatable = require('react-native-animatable');
 var Dimensions = require('Dimensions');
 var windowSize = Dimensions.get('window');

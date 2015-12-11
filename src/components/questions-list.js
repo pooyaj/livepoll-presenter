@@ -1,7 +1,8 @@
 import React from 'react-native';
 import Immutable from 'immutable';
 var _ = require('lodash');
-var Accordion = require('react-native-collapsible/Accordion');
+var Accordion = require('./accordion');
+var QuestionListResult = require('./question-list-result');
 var Animatable = require('react-native-animatable');
 var Dimensions = require('Dimensions');
 var windowSize = Dimensions.get('window');
@@ -44,6 +45,13 @@ class QuestionsList extends React.Component {
     this.props.navigator.pop();
   }
 
+  _changeQuestion(index) {
+    if(this._questions.length && this._questions[index]) {
+      this.props.onPollClick(this._questions[index].pollId);
+    }
+  }
+
+
   _renderQuestion(question, i, isActive) {
     return (
       <Animatable.View
@@ -73,7 +81,7 @@ class QuestionsList extends React.Component {
   }
 
   _changeQuestion(index) {
-    if(this._questions.length) {
+    if(this._questions.length && this._questions[index]) {
       this.props.onPollClick(this._questions[index].pollId);
     }
   }
