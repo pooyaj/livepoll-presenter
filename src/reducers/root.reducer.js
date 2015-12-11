@@ -38,6 +38,19 @@ export default function rootReducer(state=initialState, action) {
       // always need to return the new state
       return state.set('loading', action.loading);
     }
+
+    case "GET_POLLS": {
+      if (action.loading.isLoading || ("error" in action)) {
+        return state.merge({loading: action.loading, error: action.error});
+      } else {
+        console.log(action.polls);
+        return state.merge({polls: action.polls, loading: action.loading, error: action.error});
+      }
+    }
+
+    case "SET_POLLS": {
+      return state.merge({polls: action.polls});
+    }
     case "CREATE_POLL": {
       if (action.loading.isLoading || ("error" in action)) {
         return state.merge({loading: action.loading, error: action.error});
