@@ -56,14 +56,18 @@ class QuestionsList extends React.Component {
   }
 
   _renderResults(question, i, isActive) {
+    var results;
+    if (isActive) {
+      results = _.map(question.answers, (answer, key) => <QuestionListResult totalVotes={question.totalVotes || 0} answer={answer} key={key} />);
+    } else {
+      results = [<View></View>];
+    }
     return (
       <Animatable.View
         style={[styles.content, isActive && styles.isActive]}
         duration={200}
         transition="backgroundColor">
-          <View>
-          <Text>Result</Text>
-          </View>
+          {results}
       </Animatable.View>
     );
   }
