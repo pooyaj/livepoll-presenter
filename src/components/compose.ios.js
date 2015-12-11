@@ -35,6 +35,11 @@ class Compose extends React.Component {
           multiline
           numberOfLine="3"
           placeholder="Ask your question !"
+          ref={function(input) {
+            if (input != null) {
+              input.focus();
+            }
+          }}
         />
         <View style={styles.listContainer}>
           {{list}}
