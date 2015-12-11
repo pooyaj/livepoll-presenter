@@ -1,8 +1,6 @@
 import React from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
-import * as questionActions from '../actions/question.actions';
-
 const {
   StyleSheet, Navigator, ScrollView, View, Text, TextInput, TouchableHighlight
   } = React;
@@ -18,6 +16,7 @@ class Compose extends React.Component {
 
     this.state = {
       question: "",
+
       answers: [
         {
           text: "test1",
@@ -58,7 +57,8 @@ class Compose extends React.Component {
           {{list}}
         </View>
         {this._createAddButton()}
-        <TouchableHighlight style={styles.submitButton} onPress={this.props.setQuestions}>
+
+        <TouchableHighlight style={styles.submitButton} onPress={ () => this.props.onSubmit(this.state.question, this.state.answers)}>
           <Text style={styles.buttonText}>Poll</Text>
         </TouchableHighlight>
       </View>
@@ -79,11 +79,9 @@ class Compose extends React.Component {
 
   _onQuestionUpdated(text) {
     this.setState({question: text});
-    console.log("init", this.state);
   }
 
   _onAnswerUpdated(text, answer) {
-    console.log(text);
     _.forEach(this.state.answers, (item) => {
       if (item.id === answer.id) {
         item.text = text;

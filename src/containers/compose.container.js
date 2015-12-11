@@ -1,7 +1,8 @@
 import React from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
-import * as questionActions from '../actions/question.actions';
+import {createPoll} from '../actions/actions';
+
 
 
 const {Text, View, StyleSheet, Component, TouchableHighlight} = React;
@@ -12,23 +13,23 @@ class ComposeContainer extends Component {
   }
 
   render(){
-    return (<Compose />)
+    return (<Compose onSubmit={this.props.createPoll}/>)
   }
 }
 
 const mapReduxStoreToProps = (reduxStore) => {
-  const test = 1;
+
   return {
-    questions: reduxStore.get();
+    isLoading: reduxStore.getIn(['loading', 'isLoading']),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setQuestions: bindActionCreators(questionActions.setQuestions, dispatch),
+    createPoll: bindActionCreators(createPoll, dispatch)
   }
 };
 
 
-export default connect(mapReduxStoreToProps, mapDispatchToProps)(Compose);
+export default connect(mapReduxStoreToProps, mapDispatchToProps)(ComposeContainer);
 

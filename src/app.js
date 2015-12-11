@@ -13,8 +13,8 @@ class AppRouter extends React.Component {
 
   renderScene(route, nav) {
     switch (route.name) {
-      case 'helloWorld':
-        return <ComposeContainer />
+      case 'helloWorld'
+        return <ComposeContainer/>
       default:
         return <View><Text>Hello World</Text></View>;
     }
