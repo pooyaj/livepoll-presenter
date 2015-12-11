@@ -32,11 +32,12 @@ class Compose extends React.Component {
 
   render() {
 
-    var list = this.state.answers.map((answer) =>
+    var list = this.state.answers.map((answer, index) =>
       <Answer
         pressHandler={() => this.removeAnswer(answer)}
         text={answer.text}
-        onAnswerUpdated={(text) => this._onAnswerUpdated(text, answer)} />
+        onAnswerUpdated={(text) => this._onAnswerUpdated(text, answer)}
+        autoFocus={index!==0}/>
     );
 
     var submitButtonMessage = this.props.isLoading ?
@@ -50,11 +51,7 @@ class Compose extends React.Component {
           multiline
           numberOfLine="3"
           placeholder="Question"
-          ref={function(input) {
-            if (input != null) {
-              input.focus();
-            }
-          }}
+          autoFocus="true"
           onChangeText={this._onQuestionUpdated}
         />
         <View style={styles.listContainer}>
@@ -62,7 +59,7 @@ class Compose extends React.Component {
         </View>
         {this._createAddButton()}
 
-        <TouchableHighlight style={styles.submitButton} onPress={ () => this.props.onSubmit(this.state.question, this.state.answers)}>
+        <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={ () => this.props.onSubmit(this.state.question, this.state.answers)}>
           {submitButtonMessage}
         </TouchableHighlight>
       </View>
@@ -73,7 +70,7 @@ class Compose extends React.Component {
     var items = [];
     if (this.state.answers.length < 4) {
       items[0] = (
-        <TouchableHighlight style={styles.addButton} onPress={this._onAddAnswer}>
+        <TouchableHighlight underlayColor="#3498db" style={styles.addButton} onPress={this._onAddAnswer}>
           <Text style={styles.buttonText}>+</Text>
         </TouchableHighlight>
       );

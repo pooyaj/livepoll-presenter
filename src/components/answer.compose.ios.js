@@ -19,8 +19,10 @@ class Answer extends React.Component {
             placeholder="Answer"
             defaultValue={this.props.text}
             onChangeText={this.props.onAnswerUpdated}
+            autoFocus={this.props.autoFocus}
           />
           <TouchableHighlight
+            underlayColor="#3498db"
             style={styles.answerButton}
             onPress={this.props.pressHandler}
             >
