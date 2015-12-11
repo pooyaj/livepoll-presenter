@@ -18,6 +18,7 @@ class Answer extends React.Component {
             style={styles.answerText}
             placeholder="Answer"
             defaultValue={this.props.name}
+            onChangeText={this.props.onAnswerUpdated}
           />
           <TouchableHighlight
             style={styles.answerButton}
@@ -27,6 +28,12 @@ class Answer extends React.Component {
           </TouchableHighlight>
       </View>
     );
+  }
+}
+
+Answer.defaultProps = {
+  onAnswerUpdated: (text) =>  {
+
   }
 }
 

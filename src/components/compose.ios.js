@@ -22,11 +22,17 @@ class Compose extends React.Component {
     }
     this.counter = 3;
     this._onAddAnswer = this._onAddAnswer.bind(this);
+    this._onAnswerUpdated = this._onAnswerUpdated.bind(this);
   }
 
   render() {
 
-    var list = this.state.answers.map((answer) => <Answer pressHandler={() => this.removeAnswer(answer)} name={answer.name}/>);
+    var list = this.state.answers.map((answer) =>
+      <Answer
+        pressHandler={() => this.removeAnswer(answer)}
+        name={answer.name}
+        onAnswerUpdated={(text) => this._onAnswerUpdated(text)} />
+    );
 
     return (
       <View style={styles.container}>
@@ -62,6 +68,10 @@ class Compose extends React.Component {
       );
     }
     return items;
+  }
+
+  _onAnswerUpdated(text) {
+    console.log("compose", text);
   }
 
   _onAddAnswer() {
