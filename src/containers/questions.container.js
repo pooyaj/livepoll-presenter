@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
 import QuestionsList from '../components/questions-list';
 import Firebase from 'firebase';
-import * as Actions from '../actions/loading.actions';
+import * as Actions from '../actions/actions';
 const {Navigator, Text, View, Component} = React;
 
 

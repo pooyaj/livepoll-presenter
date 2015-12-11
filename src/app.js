@@ -15,7 +15,7 @@ class AppRouter extends React.Component {
   renderScene(route, nav) {
     switch (route.name) {
       case 'helloWorld':
-        return <ComposeContainer/>
+        return <ComposeContainer navigator={nav} />
       case 'questionList':
         return <QuestionsContainer navigator={nav} />;
       default:

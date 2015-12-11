@@ -3,12 +3,15 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
 import {createPoll, fetchPoll} from '../actions/actions';
 
-
-
-const {Text, View, StyleSheet, Component, TouchableHighlight} = React;
+const {Text, View, StyleSheet, Component, TouchableHighlight, Navigator} = React;
 var Compose = require('../components/compose.ios');
 
 class ComposeContainer extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
   }
 
@@ -18,7 +21,12 @@ class ComposeContainer extends Component {
       fetchPoll={this.props.fetchPoll}
       isLoading={this.props.isLoading}
       currentPollId={this.props.currentPollId}
+      onPastPolls={this._onPastPolls.bind(this)}
       />);
+  }
+
+  _onPastPolls() {
+    this.props.navigator.push({name: "questionList"});
   }
 }
 
