@@ -66,6 +66,13 @@ export default function rootReducer(state=initialState, action) {
         return state.merge({loading: action.loading, currentPoll: action.pollData});
       }
     }
+    case "REMOVE_POLL": {
+      if (action.loading.isLoading || action.error) {
+        return state.merge({loading: action.loading, error: action.error});
+      } else {
+        return state.merge({loading: action.loading, error: action.error});
+      }
+    }
 
   }
   return state;

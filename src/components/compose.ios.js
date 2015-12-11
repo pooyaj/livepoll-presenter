@@ -67,7 +67,7 @@ class Compose extends React.Component {
         <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={ () => this.props.onSubmit(this.state.question, this.state.answers)}>
           {submitButtonMessage}
         </TouchableHighlight>
-        <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={ () => this.props.onPastPolls()}>
+        <TouchableHighlight underlayColor="#3498db" style={styles.submitButton} onPress={this.props.onPastPolls}>
           <Text style={styles.buttonText}>Past Polls</Text>
         </TouchableHighlight>
       </View>

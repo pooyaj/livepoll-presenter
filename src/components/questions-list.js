@@ -18,6 +18,8 @@ class QuestionsList extends React.Component {
     super(props);
 
     this._changeQuestion = this._changeQuestion.bind(this);
+    this._renderQuestion = this._renderQuestion.bind(this);
+    this._renderResults = this._renderResults.bind(this);
   }
 
   _goToLivePoll() {
@@ -30,7 +32,14 @@ class QuestionsList extends React.Component {
         style={[styles.header, isActive && styles.isActive]}
         duration={200}
         transition="backgroundColor">
-        <Text>{question.get('questionText')}</Text>
+        <Text style={styles.header}>{question.get('questionText')}</Text>
+        <TouchableHighlight
+          underlayColor="#3498db"
+          style={styles.buttonSmall}
+          onPress={ () => this.props.onRemoveQuestion(question) }
+        >
+          <Text style={styles.buttonText}>X</Text>
+        </TouchableHighlight>
       </Animatable.View>
     );
   }
@@ -93,6 +102,12 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   header: {
+    flexDirection: 'row',
+    padding: 15,
+    borderTopWidth: 1,
+    backgroundColor: 'rgba(245,252,255,1)'
+  },
+  question: {
     padding: 15,
     borderTopWidth: 1,
     backgroundColor: 'rgba(245,252,255,1)'
@@ -112,11 +127,29 @@ var styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.2)',
     color: '#ffffff',
     textAlign: 'center',
-  }
+  },
+  buttonSmall: {
+    flex: 0,
+    height: 48,
+    width: 48,
+    borderColor: '#FFFFFF',
+    backgroundColor: '#00AEEF',
+    borderRadius: 8,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonText: {
+    fontSize: 20,
+    color: 'white'
+  },
 });
 
 QuestionsList.defaultProps = {
   questions: Immutable.Map({}),
+  onRemoveQuestion: (question) => {
+    console.log("Remove tapped", question.toJS())
+  }
 };
 
 module.exports = QuestionsList;
