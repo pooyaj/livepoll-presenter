@@ -12,11 +12,22 @@ const {
   TouchableHighlight,
   ActivityIndicatorIOS,
   ProgressBarAndroid,
+  AlertIOS,
   } = React;
 
 const Answer = require('./answer.compose.ios')
 const _ = require('lodash')
 var DialogAndroid = require('react-native-dialogs');
+
+var showIOSDialog = function (title, message) {
+  AlertIOS.alert(
+    title,
+    message,
+    [
+      {text: 'OK', onPress: () => console.log('OK Pressed!')},
+    ]
+  )
+}
 
 var showAndroidDialog = function (title, message) {
   var dialog = new DialogAndroid();
@@ -113,7 +124,7 @@ class Compose extends React.Component {
       var title = "(╯°□°)╯︵ ┻━┻"
       var message = "Make sure your poll has a question and at least two answers. "
       if (Platform.OS === 'ios') {
-
+        showIOSDialog(title, message);
       } else {
         showAndroidDialog(title, message);
       }
