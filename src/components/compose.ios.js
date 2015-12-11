@@ -2,7 +2,7 @@ import React from 'react-native';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux/native';
 const {
-  StyleSheet, Navigator, ScrollView, View, Text, TextInput, TouchableHighlight, ActivityIndicatorIOS
+  Platform, StyleSheet, Navigator, ScrollView, View, Text, TextInput, TouchableHighlight, ActivityIndicatorIOS, ProgressBarAndroid
   } = React;
 
 const Answer = require('./answer.compose.ios')
@@ -20,7 +20,7 @@ class Compose extends React.Component {
       answers: [
         {
           text: "test1",
-          id:0
+          id: 0
         },
       ]
     }
@@ -28,6 +28,7 @@ class Compose extends React.Component {
     this._onAddAnswer = this._onAddAnswer.bind(this);
     this._onAnswerUpdated = this._onAnswerUpdated.bind(this);
     this._onQuestionUpdated = this._onQuestionUpdated.bind(this);
+    this._createIndeterminateProgressBar = this._createIndeterminateProgressBar.bind(this);
 
     if (this.props.currentPollId) {
       this.props.fetchPoll(this.props.currentPollId);
@@ -37,15 +38,15 @@ class Compose extends React.Component {
   render() {
 
     var list = this.state.answers.map((answer, index) =>
-      <Answer
-        pressHandler={() => this.removeAnswer(answer)}
-        text={answer.text}
-        onAnswerUpdated={(text) => this._onAnswerUpdated(text, answer)}
-        autoFocus={index!==0}/>
+        <Answer
+          pressHandler={() => this.removeAnswer(answer)}
+          text={answer.text}
+          onAnswerUpdated={(text) => this._onAnswerUpdated(text, answer)}
+          autoFocus={index !== 0}/>
     );
 
     var submitButtonMessage = this.props.isLoading ?
-      <ActivityIndicatorIOS size="large" color="white"/>:
+      this._createIndeterminateProgressBar() :
       <Text style={styles.buttonText}>Poll</Text>;
 
     return (
@@ -97,16 +98,26 @@ class Compose extends React.Component {
   _onAddAnswer() {
     var newAnswers = this.state.answers;
     this.counter++;
-    newAnswers.push({text: "", id:this.counter});
+    newAnswers.push({text: "", id: this.counter});
     this.setState({answers: newAnswers});
   }
 
   removeAnswer(answer) {
     var newAnswers = this.state.answers
-    _.remove(newAnswers, function(item) {
+    _.remove(newAnswers, function (item) {
       return answer.id === item.id;
     });
     this.setState({answers: newAnswers});
+  }
+
+  _createIndeterminateProgressBar() {
+    var progressBar;
+    if (Platform.OS === 'ios') {
+      progressBar = <ActivityIndicatorIOS size="large" color="white"/>
+    } else {
+      progressBar = <ProgressBarAndroid styleAttr="Inverse" color="white"/>
+    }
+    return progressBar;
   }
 }
 
